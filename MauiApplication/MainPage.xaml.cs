@@ -77,38 +77,39 @@ public partial class MainPage : ContentPage
     }
     private void ClickE(object sender, EventArgs e)
     {
-        entry = Convert.ToString(Evaluate(entry));
+        entry = Convert.ToString(Evaluate(DisplayEntry.Text)).Replace(",", ".");
         if (entry == null || entry == "NaN")
             entry = "Undefined";
         DisplayEntry.Text = entry;
     }
     private void Add(object sender, EventArgs e)
     {
-        if (entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/"))
-            return;
+        if (entry == null || entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/")) return;
         else entry = entry + "+";
         DisplayEntry.Text = entry;
     }
     private void Sub(object sender, EventArgs e)
     {
-        if (entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/"))
-            return;
+        if (entry == null || entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/")) return;
         else entry = entry + "-";
         DisplayEntry.Text = entry;
     }
     private void Mult(object sender, EventArgs e)
     {
-        if (entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/"))
-            return;
+        if (entry == null || entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/")) return;
         else entry = entry + "*";
         DisplayEntry.Text = entry;
     }
     private void Div(object sender, EventArgs e)
     {
-        if (entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/"))
-            return;
+        if (entry == null || entry.EndsWith("+") || entry.EndsWith("-") || entry.EndsWith("*") || entry.EndsWith("/")) return;
         else entry = entry + "/";
         DisplayEntry.Text = entry;
+    }
+
+    private void UpdateEntry(object sender, TextChangedEventArgs e)
+    {
+        entry = DisplayEntry.Text;
     }
 }
 

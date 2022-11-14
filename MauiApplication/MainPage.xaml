@@ -10,7 +10,8 @@
             ColumnDefinitions="75*,25*">
             <Entry
                 x:Name="DisplayEntry"
-                Placeholder=""/>
+                Placeholder=""
+                TextChanged="UpdateEntry"/>
         </Grid>
         <Grid
             RowDefinitions="*,*,*,*"
