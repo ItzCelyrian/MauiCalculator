@@ -7,15 +7,23 @@
         VerticalOptions="Center">
         <Grid
             Margin="10"
-            ColumnDefinitions="75*,25*">
+            ColumnDefinitions="75*,12.5*,12.5*">
             <Entry
-                x:Name="DisplayEntry"
+                x:Name="Display"
                 Placeholder=""
-                TextChanged="UpdateEntry"/>
+                TextChanged="Update"/>
+            <Button
+                Text="Ans"
+                Grid.Column="1"
+                Clicked="Click"/>
+            <Button
+                Text="C"
+                Grid.Column="2"
+                Clicked="Clear"/>
         </Grid>
         <Grid
             RowDefinitions="*,*,*,*"
-            ColumnDefinitions="25*,25*,25*,10*,15*"
+            ColumnDefinitions="25*,25*,25*,12.5*,12.5*"
             Margin="10">
             <Button 
                 Text="1"
@@ -36,7 +44,7 @@
                 Text="+"
                 Grid.Row="0"
                 Grid.Column="4"
-                Clicked="Add"/>
+                Clicked="Op"/>
             <Button 
                 Text="4"
                 Grid.Row="1"
@@ -56,7 +64,7 @@
                 Text="-"
                 Grid.Row="1"
                 Grid.Column="4"
-                Clicked="Sub"/>
+                Clicked="Op"/>
             <Button 
                 Text="7"
                 Grid.Row="2"
@@ -76,12 +84,12 @@
                 Text="*"
                 Grid.Row="2"
                 Grid.Column="4"
-                Clicked="Mult"/>
+                Clicked="Op"/>
             <Button 
-                Text="C"
+                Text="Del"
                 Grid.Row="3"
                 Grid.Column="0"
-                Clicked="ClickC"/>
+                Clicked="Backspace"/>
             <Button 
                 Text="0"
                 Grid.Row="3"
@@ -91,12 +99,12 @@
                 Text="="
                 Grid.Row="3"
                 Grid.Column="2"
-                Clicked="ClickE"/>
+                Clicked="Equals"/>
             <Button 
                 Text="/"
                 Grid.Row="3"
                 Grid.Column="4"
-                Clicked="Div"/>
+                Clicked="Op"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
