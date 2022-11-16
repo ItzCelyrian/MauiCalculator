@@ -10,7 +10,7 @@
             ColumnDefinitions="75*,12.5*,12.5*">
             <Entry
                 x:Name="Display"
-                Placeholder=""
+                Placeholder="Use the Buttons or your Keyboard to enter..."
                 TextChanged="Update"/>
             <Button
                 Text="Ans"

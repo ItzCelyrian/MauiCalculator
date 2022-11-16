@@ -57,10 +57,12 @@ public partial class MainPage : ContentPage
     {
         entry = Convert.ToString(Evaluate(Display.Text.Replace("Ans", ans))).Replace(",", ".");
         
-        if (entry is "NaN") 
+        if (entry is null || entry is "NaN") 
             entry = "Undefined";
 
-        bool answer = await DisplayAlert($"Answer: {entry}", "Do you want to save your Answer as the ANS variable?", "Yes", "No");
+        bool answer = false;
+        if (entry is not "Undefined")
+            answer = await DisplayAlert($"Answer: {entry}", "Do you want to save your Answer as the ANS variable?", "Yes", "No");
         if (answer)
             ans = entry;
     }
