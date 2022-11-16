@@ -1,72 +1,48 @@
 ﻿using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MauiApplication;
 
 public partial class MainPage : ContentPage
 {
     string entry;
-    static double Evaluate(string expression)
-    {
-        var DataTable = new DataTable();
-        var DataColumn = new DataColumn("Eval", typeof(double), expression);
-        DataTable.Columns.Add(DataColumn);
-        DataTable.Rows.Add(0);
-        return (double)(DataTable.Rows[0]["Eval"]);
-    }
     public MainPage()
     {
         InitializeComponent();
     }
-    private void Click0(object sender, EventArgs e)
+    private static double Evaluate(string expression)
     {
-        entry += "0";
-        DisplayEntry.Text = entry;
+        try
+        {
+            var DataTable = new DataTable();
+            var DataColumn = new DataColumn("Eval", typeof(double), expression);
+
+            DataTable.Columns.Add(DataColumn);
+            DataTable.Rows.Add(0);
+            return (double)(DataTable.Rows[0]["Eval"]);
+        }
+        catch
+        {
+            return 0;
+        }
     }
-    private void Click1(object sender, EventArgs e)
+    private void Click(object sender, EventArgs e)
     {
-        entry += "1";
-        DisplayEntry.Text = entry;
-    }
-    private void Click2(object sender, EventArgs e)
-    {
-        entry += "2";
-        DisplayEntry.Text = entry;
-    }
-    private void Click3(object sender, EventArgs e)
-    {
-        entry += "3";
-        DisplayEntry.Text = entry;
-    }
-    private void Click4(object sender, EventArgs e)
-    {
-        entry += "4";
-        DisplayEntry.Text = entry;
-    }
-    private void Click5(object sender, EventArgs e)
-    {
-        entry += "5";
-        DisplayEntry.Text = entry;
-    }
-    private void Click6(object sender, EventArgs e)
-    {
-        entry += "6";
-        DisplayEntry.Text = entry;
-    }
-    private void Click7(object sender, EventArgs e)
-    {
-        entry += "7";
-        DisplayEntry.Text = entry;
-    }
-    private void Click8(object sender, EventArgs e)
-    {
-        entry += "8";
-        DisplayEntry.Text = entry;
-    }
-    private void Click9(object sender, EventArgs e)
-    {
-        entry += "9";
+        string[] zeroOps = { "+0", "-0", "*0", "/0" };
+        bool zeroCase = false;
+
+        if ( DisplayEntry.Text is not null )
+            zeroCase = zeroOps.Any(x => DisplayEntry.Text.EndsWith(x)) || DisplayEntry.Text == "0";
+
+        if ( (sender as Button).Text == "0" && zeroCase )
+            return;
+
+        if ( DisplayEntry.Text is not null && (sender as Button).Text != "0" && DisplayEntry.Text.EndsWith("0") ) 
+            DisplayEntry.Text = DisplayEntry.Text.Substring(0, DisplayEntry.Text.Length - 1);
+        
+        entry += (sender as Button).Text;
         DisplayEntry.Text = entry;
     }
     private void ClickC(object sender, EventArgs e)
